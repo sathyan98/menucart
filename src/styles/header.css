@@ -1,0 +1,32 @@
+.header {
+position: static;
+text-decoration: none;
+background-color: bisque;
+
+}
+
+.header-right {
+    display: flex;
+    height: 50px;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+    flex-basis : '100%'
+
+}
+
+.navhome {
+     justify-self: center;
+     align-self: center;
+}
+
+.formblock {
+     display : flex;
+     height : 50px;
+     flex-direction: row;
+     justify-content: center;
+     align-items: baseline;
+     align-self: center;
+     gap: 10px
+}
