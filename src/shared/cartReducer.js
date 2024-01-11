@@ -5,10 +5,13 @@ const initialState = {
 }
 const cartreducer = createSlice({
     name : 'cart',
-    initialState : initialState,
+    initialState : {
+        cart : []
+    },
     reducers : {
-        pushCartItems : (action,state) => {
-               state.cartArray.push(action.payload)
+        enterCartItems : (state, action) => {
+                console.log('action',action,'state',state);
+               state.cart.push(action.payload)
         },
         removeCartItems : (action,payload) => {
               return { cartArray : []}
@@ -16,5 +19,5 @@ const cartreducer = createSlice({
     }
 })
 
-export const {pushCartItems,removeCartItems} = cartreducer.actions
+export const {enterCartItems,removeCartItems} = cartreducer.actions
 export default cartreducer.reducer
