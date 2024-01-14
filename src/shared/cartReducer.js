@@ -14,7 +14,7 @@ const cartreducer = createSlice({
                state.cart.push(action.payload)
         },
         removeCartItems : (action,payload) => {
-              return { cartArray : []}
+              return { cart : []}
         }
     }
 })
