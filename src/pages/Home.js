@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Menudetails from './Menudetails';
+import Button from 'react-bootstrap/Button';
+
 
 
 const Apikey = 'aaaa89d29126447985bd982356fe5384'
@@ -12,6 +14,9 @@ const Home = () => {
       const [burger, setBurgerState] = useState(true);
       const [burgerData,setburgerData] = useState(null);
       const [pizzaData, setpizzaData] = useState(null);
+      const [search,searchData] = useState('');
+      // const [searchBurger, setsearchBurger] = useState('');
+      // const [searchPizza, setsearchPizza] = useState('')
 
       const fetchBurgerData = () => {
           fetch(`https://api.spoonacular.com/food/menuItems/search?query=burger&number=24&apiKey=${Apikey}`).then(res => res.json()).then(data => setburgerData(data.menuItems))
@@ -37,20 +42,62 @@ const Home = () => {
        }
         console.log('pizzastate',pizzastate);
         console.log('burgerstate', burger);
+      const handleSearch = (e) => {
+           
+          if (burgerData != null && burger == true) {
+               burgerData.filter((burger) => {
+                    console.log('burger',burger)
+                  if ( burger.restaurantChain.includes(search)){
+                      setburgerData(null);
+                      setburgerData([burger]);
+                      
+                  }
+               })
+          }
+          else if (pizzaData != null && pizzastate == true) {
+            pizzaData.filter((pizza) => {
+                
+               if ( pizza.restaurantChain.includes(search)){
+                   setpizzaData(null);
+                   setpizzaData([pizza]);
+                   
+               }
+            })
+       }
+      }
+
+      const handleReset = () => {
+           setburgerData(null);
+           setpizzaData(null);
+           searchData('');
+           if(burger == true){
+            fetchBurgerData()
+           }
+           else if(pizzastate == true) {
+            fetchPizzaData()
+           }
+      }
        return(
           <div>
+            
                <form className='formblock' style = {{marginTop : '20px'}}>
-                  <label> Please Enter Your Food Choice</label>
+                  <label style = {{flexShrink : 4}}> Please Enter Your Food Choice</label>
                  
                   <input type = 'radio' id = 'pizza'  name = 'select' checked = {pizzastate} onChange = {changePizza} />
                   <label htmlFor='pizza' >Pizza </label>
 
                   <input type = 'radio' id = 'burger'  name = 'select' checked = {burger} onChange = {changeBurger}/>
                   <label htmlFor='burger'  > Burger </label>
+                 
+              </form>
+            <div style = {{display : 'flex', flexDirection : 'row',justifyContent : 'flex-end', alignItems : 'flex-start', gap : '10px',}}>
+                
+                  <input  type = 'text'  placeholder='Search Restaurant...' onChange = {(e) => searchData(e.target.value)} />
+                    <button  onClick = {(e) => handleSearch(e)}>Search</button>
+                    <button style = {{marginRight : '20px'}} onClick = {(e) => handleReset(e)}>Reset</button>
 
-               </form>
-
-            {/* <h3>Please Choose your restaurant</h3>    */}
+          
+            </div>     
            <Container fluid >
                <Row  >
                
