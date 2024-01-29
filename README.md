@@ -10,7 +10,7 @@
    The application has deigned using these functionalities - React Router, Dynamic Routing, Redux toolkit, Promises etc,
 
 # Note : 
-   The application utilizes the third party api called spooncaular which is authorizes and provides limited number of api calls per day,Please login to spoonacular and copy paste your own API-KEY.
+   The application utilizes the third party api called spooncaular which is authorized and provides limited number of api calls per day,Please login to spoonacular and copy paste your own API-KEY.
 
 # Getting Started with Create React App
 
